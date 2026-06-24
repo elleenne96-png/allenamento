@@ -1,118 +1,137 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0f1115">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Allenamento">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  <title>Allenamento</title>
-  <style>
-    :root{
-      --bg:#0f1115;--card:#181b22;--card2:#12151c;--muted:#9ca3af;--text:#f3f4f6;
-      --accent:#a78bfa;--accent2:#c4b5fd;--line:#2b303b;--good:#34d399;--danger:#fecaca;
-    }
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:env(safe-area-inset-bottom)}
-    header{position:sticky;top:0;z-index:10;background:rgba(15,17,21,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 14px 12px}
-    h1{font-size:20px;margin:0 0 10px}
-    .tabs,.subtabs{display:flex;gap:8px;flex-wrap:wrap}.subtabs{margin-top:8px}
-    button{border:0;border-radius:14px;padding:11px 13px;background:#252a35;color:var(--text);font-weight:800;font-size:15px}
-    button.active{background:var(--accent);color:#111}
-    main{padding:14px;max-width:900px;margin:auto}
-    .meta,.homeHelp{color:var(--muted);font-size:13px;margin:8px 2px 14px;line-height:1.35}
-    .homeHelp{border:1px solid var(--line);border-radius:16px;padding:11px 12px;background:var(--card2)}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 14px}
-    .stat{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:10px}.stat b{display:block;font-size:18px;color:var(--accent2)}.stat span{font-size:12px;color:var(--muted)}
-    .exercise{background:var(--card);border:1px solid var(--line);border-radius:20px;margin:12px 0;padding:14px}
-    .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-    h2{font-size:17px;margin:0;line-height:1.2}.tag{font-size:12px;color:#111;background:var(--good);border-radius:999px;padding:4px 8px;white-space:nowrap;font-weight:900}
-    .details{font-size:13px;color:var(--muted);margin:8px 0 10px}
-    .guide{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0 12px;font-size:13px;line-height:1.38}.guide div{margin:4px 0}
-    .sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:8px}
-    label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
-    input{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:#10131a;color:var(--text);font-size:16px}
-    input.done{border-color:var(--good);background:#102018}
-    .checkline{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}.check{padding:8px 10px;border-radius:12px;background:#252a35}.check.done{background:#123326;color:#b7f7d8}
-    .actions{display:flex;gap:8px;margin:16px 0 28px;flex-wrap:wrap}.danger{background:#3a1c1c;color:var(--danger)}
-    .hidden{display:none}.timerBox{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:14px;margin:12px 0;text-align:center}.timerTime{font-size:46px;font-weight:900;color:var(--accent2);margin:8px 0}
-    canvas{width:100%;max-width:840px;background:var(--card2);border:1px solid var(--line);border-radius:20px;margin:12px 0;padding:10px}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Allenamento">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Allenamento</title>
+<style>
+:root{--bg:#0f1115;--card:#181b22;--card2:#12151c;--muted:#9ca3af;--text:#f3f4f6;--accent:#a78bfa;--accent2:#c4b5fd;--line:#2b303b;--good:#34d399;--danger:#fecaca}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:env(safe-area-inset-bottom)}
+header{position:sticky;top:0;z-index:10;background:rgba(15,17,21,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 14px 12px}
+h1{font-size:20px;margin:0 0 10px}.tabs,.subtabs{display:flex;gap:8px;flex-wrap:wrap}.subtabs{margin-top:8px}
+button{border:0;border-radius:14px;padding:11px 13px;background:#252a35;color:var(--text);font-weight:800;font-size:15px}
+button.active{background:var(--accent);color:#111}button.small{font-size:13px;padding:8px 10px}.danger{background:#3a1c1c;color:var(--danger)}
+main{padding:14px;max-width:900px;margin:auto}.meta,.homeHelp{color:var(--muted);font-size:13px;margin:8px 2px 14px;line-height:1.35}.homeHelp{border:1px solid var(--line);border-radius:16px;padding:11px 12px;background:var(--card2)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 14px}.stat{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:10px}.stat b{display:block;font-size:18px;color:var(--accent2)}.stat span{font-size:12px;color:var(--muted)}
+.exercise,.editorCard{background:var(--card);border:1px solid var(--line);border-radius:20px;margin:12px 0;padding:14px}.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+h2{font-size:17px;margin:0;line-height:1.2}.tag{font-size:12px;color:#111;background:var(--good);border-radius:999px;padding:4px 8px;white-space:nowrap;font-weight:900}.details{font-size:13px;color:var(--muted);margin:8px 0 10px}
+.guide{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0 12px;font-size:13px;line-height:1.38}.guide div{margin:4px 0}
+.sets,.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:8px}
+label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}input,textarea,select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:#10131a;color:var(--text);font-size:16px}
+textarea{min-height:76px}input.done{border-color:var(--good);background:#102018}.checkline,.actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.check{padding:8px 10px;border-radius:12px;background:#252a35}.check.done{background:#123326;color:#b7f7d8}
+.hidden{display:none}.timerBox{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:14px;margin:12px 0;text-align:center}.timerTime{font-size:46px;font-weight:900;color:var(--accent2);margin:8px 0}
+canvas{width:100%;max-width:840px;background:var(--card2);border:1px solid var(--line);border-radius:20px;margin:12px 0;padding:10px}
+hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+</style>
 </head>
 <body>
 <header>
-  <h1>Allenamento</h1>
-  <div class="tabs"><button id="tabA" class="active" onclick="showDay('A')">Giorno A</button><button id="tabB" onclick="showDay('B')">Giorno B</button></div>
-  <div class="subtabs"><button id="tabWorkout" class="active" onclick="showView('workout')">Scheda</button><button id="tabProgress" onclick="showView('progress')">Progressi</button><button id="tabWeight" onclick="showView('weight')">Peso</button></div>
+<h1>Allenamento</h1>
+<div class="tabs"><button id="tabA" class="active" onclick="showDay('A')">Giorno A</button><button id="tabB" onclick="showDay('B')">Giorno B</button></div>
+<div class="subtabs"><button id="tabWorkout" class="active" onclick="showView('workout')">Scheda</button><button id="tabEdit" onclick="showView('edit')">Modifica</button><button id="tabProgress" onclick="showView('progress')">Progressi</button><button id="tabWeight" onclick="showView('weight')">Peso</button></div>
 </header>
-
 <main>
 <section id="viewWorkout">
-  <p class="meta">Tracker con pesi, serie completate, timer recuperi e salvataggio automatico.</p>
-  <div class="homeHelp">Da Safari: Condividi → Aggiungi alla schermata Home.</div>
-  <div class="stats"><div class="stat"><b id="completedStat">0%</b><span>completamento</span></div><div class="stat"><b id="setsStat">0/0</b><span>serie fatte</span></div><div class="stat"><b id="dayStat">A</b><span>giorno attivo</span></div></div>
-  <div class="timerBox"><div>Timer recupero</div><div class="timerTime" id="timerLabel">00:00</div><button onclick="startTimer(60)">60s</button> <button onclick="startTimer(90)">90s</button> <button onclick="startTimer(120)">120s</button></div>
-  <section id="dayA"></section><section id="dayB" class="hidden"></section>
-  <div class="actions"><button onclick="saveSession()">Salva seduta</button><button onclick="exportData()">Esporta dati</button><button class="danger" onclick="resetData()">Azzera tutto</button></div>
+<p class="meta">Tracker con pesi, serie completate, timer recuperi e salvataggio automatico.</p>
+<div class="homeHelp">Da Safari: Condividi → Aggiungi alla schermata Home.</div>
+<div class="stats"><div class="stat"><b id="completedStat">0%</b><span>completamento</span></div><div class="stat"><b id="setsStat">0/0</b><span>serie fatte</span></div><div class="stat"><b id="dayStat">A</b><span>giorno attivo</span></div></div>
+<div class="timerBox"><div>Timer recupero</div><div class="timerTime" id="timerLabel">00:00</div><button onclick="startTimer(60)">60s</button> <button onclick="startTimer(90)">90s</button> <button onclick="startTimer(120)">120s</button></div>
+<section id="dayA"></section><section id="dayB" class="hidden"></section>
+<div class="actions"><button onclick="saveSession()">Salva seduta</button><button onclick="exportData()">Esporta dati</button><button class="danger" onclick="resetAll()">Azzera tutto</button></div>
+</section>
+
+<section id="viewEdit" class="hidden">
+<p class="meta">Qui puoi modificare la scheda direttamente dall’app: nome, gruppo, serie, ripetizioni e spiegazioni.</p>
+<div class="homeHelp">Le modifiche restano salvate sul telefono. Puoi esportare un backup e reimportarlo in futuro.</div>
+<div class="actions"><button onclick="addExercise()">+ Aggiungi esercizio</button><button onclick="saveWorkoutEdit()">Salva modifiche</button><button onclick="exportBackup()">Backup</button><button onclick="document.getElementById('importFile').click()">Importa</button><button class="danger" onclick="resetWorkoutOnly()">Ripristina scheda base</button></div>
+<input id="importFile" type="file" accept="application/json" class="hidden" onchange="importBackup(event)">
+<div id="editor"></div>
 </section>
 
 <section id="viewProgress" class="hidden">
-  <p class="meta">Grafico basato sul peso massimo inserito nelle sedute salvate.</p>
-  <canvas id="progressChart" width="840" height="420"></canvas>
-  <div class="actions"><button onclick="drawProgress('Hip Thrust Machine')">Hip Thrust</button><button onclick="drawProgress('Abductor Machine')">Abductor</button><button onclick="drawProgress('Lat Machine Presa Larga')">Lat Machine</button></div>
+<p class="meta">Grafico basato sul peso massimo inserito nelle sedute salvate.</p>
+<canvas id="progressChart" width="840" height="420"></canvas>
+<div class="actions" id="progressButtons"></div>
 </section>
 
 <section id="viewWeight" class="hidden">
-  <p class="meta">Traccia il peso corporeo. Inserisci il valore e salva.</p>
-  <div class="exercise"><h2>Peso corporeo</h2><div class="sets"><div><label>Kg</label><input id="bodyWeight" inputmode="decimal" placeholder="es. 66.8"></div></div><div class="actions"><button onclick="saveBodyWeight()">Salva peso</button></div></div>
-  <canvas id="weightChart" width="840" height="420"></canvas>
+<p class="meta">Traccia il peso corporeo. Inserisci il valore e salva.</p>
+<div class="exercise"><h2>Peso corporeo</h2><div class="sets"><div><label>Kg</label><input id="bodyWeight" inputmode="decimal" placeholder="es. 66.8"></div></div><div class="actions"><button onclick="saveBodyWeight()">Salva peso</button></div></div>
+<canvas id="weightChart" width="840" height="420"></canvas>
 </section>
 </main>
 
 <script>
-const guides={
-"Plank su Fitball":["Gomiti sulla fitball, glutei e addome stretti, corpo in linea.","Non inarcare la zona lombare, non alzare troppo il bacino, non trattenere il respiro.","Addome profondo, retto addominale, glutei, stabilizzatori delle spalle."],
-"Crunch Obliqui":["Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.","Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.","Obliqui, retto addominale, controllo del core."],
-"Hip Thrust Machine":["Spingi dal tallone/centro piede, retroversione del bacino in alto, fermo 1 secondo.","Non iperestendere la schiena, non spingere solo coi quadricipiti, non chiudere le ginocchia.","Gluteo massimo; secondariamente femorali e gluteo medio."],
-"Abductor Machine":["Apri le ginocchia in modo controllato, busto leggermente inclinato se senti meglio il gluteo.","Non usare slanci, non rimbalzare, non scegliere un carico ingestibile.","Gluteo medio, gluteo piccolo, parte alta/laterale del gluteo."],
-"Glute Bridge Frog":["Stance frog, ginocchia aperte, spingi il bacino in alto e stringi il gluteo.","Non inarcare la schiena, non chiudere le ginocchia, non andare veloce.","Gluteo massimo e medio, minimo coinvolgimento quadricipiti."],
-"Pulley Triangolo":["Tira verso l’addome, petto aperto, scapole che si chiudono dietro.","Non dondolare, non tirare col collo, non chiudere le spalle avanti.","Dorsali, romboidi, trapezio medio, bicipiti come supporto."],
-"Upper Back Machine":["Petto appoggiato, gomiti leggermente sotto le spalle, tira chiudendo le scapole.","Non stringere troppo la presa, non alzare le spalle, non compensare con la schiena.","Parte alta schiena, deltoide posteriore, romboidi."],
-"Alzate Laterali":["Gomiti morbidi, alza fino circa altezza spalle, movimento lento.","Non oscillare, non salire oltre misura, non caricare troppo.","Deltoide laterale."],
-"Arnold Press":["Parti coi manubri davanti, ruota e spingi sopra la testa con controllo.","Non inarcare la schiena, non spingere con slancio, non chiudere il collo nelle spalle.","Deltoidi anteriori e laterali, tricipiti."],
-"Plank Laterale con Disco":["Gomito sotto spalla, bacino alto, disco stabile sul fianco.","Non crollare col bacino, non ruotare il busto, non caricare se perdi linea.","Obliqui, quadrato dei lombi, gluteo medio."],
-"Plank":["Gomiti sotto le spalle, addome contratto, glutei stretti, corpo in linea.","Non inarcare, non alzare troppo il sedere, non spingere la testa avanti.","Core profondo, retto addominale, glutei, spalle."],
-"Stacco Gambe Semitese":["Ginocchia morbide, manubri vicini alle gambe, scendi flettendo l’anca.","Non arrotondare la schiena, non piegare troppo le ginocchia, non scendere senza controllo.","Femorali, glutei, catena posteriore."],
-"Adductor Machine":["Chiudi le gambe controllando il movimento, bacino stabile e schiena appoggiata.","Non sbattere i pacchi peso, non slanciare, non compensare col busto.","Adduttori/interno coscia e stabilità del bacino."],
-"Lat Machine Presa Larga":["Tira la sbarra verso alto petto, gomiti verso il basso, petto aperto.","Non tirare dietro la nuca, non usare slancio, non chiudere le spalle.","Gran dorsale, parte alta schiena."],
-"Push Down Corda":["Gomiti fermi vicino al busto, estendi fino in fondo aprendo leggermente la corda.","Non muovere le spalle, non dondolare, non perdere controllo in risalita.","Tricipiti."],
-"Curl al Cavo Basso":["Gomiti fermi, tira la barra verso il petto e controlla la discesa.","Non oscillare, non portare i gomiti avanti, non accorciare il movimento.","Bicipiti e brachiale."],
-"Cardio Intervallato":["Alterna 1 minuto intenso e 1 minuto lento senza arrivare fuori controllo.","Non partire troppo forte, non correre se dà fastidio alle ginocchia.","Fiato, consumo calorico, resistenza."],
-"Cardio":["Elittica o tapis inclinato a intensità moderata.","Non correre se senti fastidio, non aggrapparti troppo, non chiudere la postura.","Fiato e consumo calorico."]
-};
-const workouts={A:[["Plank su Fitball","Core iniziale","3 x 45\"",3],["Crunch Obliqui","Core iniziale","3 x 20",3],["Hip Thrust Machine","Glutei","4 x 8-10",4],["Abductor Machine","Glutei","4 x 15 - ultima serie 15 + 15 molleggiate",4],["Glute Bridge Frog","Glutei","3 x 15-20",3],["Pulley Triangolo","Schiena","4 x 8-10",4],["Upper Back Machine","Schiena","3 x 10",3],["Alzate Laterali","Spalle","3 x 12",3],["Arnold Press","Spalle","3 x 10",3],["Plank Laterale con Disco","Core finale","3 x 30-40\" per lato",3],["Crunch Obliqui","Core finale","3 x 20",3],["Cardio Intervallato","Cardio","15 min - 1' veloce / 1' lento",1]],B:[["Plank","Core iniziale","3 x 60\"",3],["Crunch Obliqui","Core iniziale","3 x 20",3],["Stacco Gambe Semitese","Glutei/Femorali","4 x 8",4],["Hip Thrust Machine","Glutei","3 x 12",3],["Adductor Machine","Glutei/Gambe","3 x 15",3],["Abductor Machine","Glutei","3 x 15",3],["Lat Machine Presa Larga","Schiena","4 x 8-10",4],["Push Down Corda","Tricipiti","3 x 10",3],["Curl al Cavo Basso","Bicipiti","3 x 10",3],["Alzate Laterali","Spalle","3 x 12",3],["Plank su Fitball","Core finale","3 x 45\"",3],["Plank Laterale con Disco","Core finale","3 x 30-40\" per lato",3],["Cardio","Cardio","15 min elittica o tapis inclinato",1]]};
+const defaultWorkouts={
+A:[
+{name:"Plank su Fitball",group:"Core iniziale",reps:"3 x 45\"",sets:3,how:"Gomiti sulla fitball, glutei e addome stretti, corpo in linea.",dont:"Non inarcare la zona lombare, non alzare troppo il bacino, non trattenere il respiro.",feel:"Addome profondo, retto addominale, glutei, stabilizzatori delle spalle."},
+{name:"Crunch Obliqui",group:"Core iniziale",reps:"3 x 20",sets:3,how:"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.",dont:"Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.",feel:"Obliqui, retto addominale, controllo del core."},
+{name:"Hip Thrust Machine",group:"Glutei",reps:"4 x 8-10",sets:4,how:"Spingi dal tallone/centro piede, retroversione del bacino in alto, fermo 1 secondo.",dont:"Non iperestendere la schiena, non spingere solo coi quadricipiti, non chiudere le ginocchia.",feel:"Gluteo massimo; secondariamente femorali e gluteo medio."},
+{name:"Abductor Machine",group:"Glutei",reps:"4 x 15 - ultima serie 15 + 15 molleggiate",sets:4,how:"Apri le ginocchia in modo controllato, busto leggermente inclinato se senti meglio il gluteo.",dont:"Non usare slanci, non rimbalzare, non scegliere un carico ingestibile.",feel:"Gluteo medio, gluteo piccolo, parte alta/laterale del gluteo."},
+{name:"Glute Bridge Frog",group:"Glutei",reps:"3 x 15-20",sets:3,how:"Stance frog, ginocchia aperte, spingi il bacino in alto e stringi il gluteo.",dont:"Non inarcare la schiena, non chiudere le ginocchia, non andare veloce.",feel:"Gluteo massimo e medio, minimo coinvolgimento quadricipiti."},
+{name:"Pulley Triangolo",group:"Schiena",reps:"4 x 8-10",sets:4,how:"Tira verso l’addome, petto aperto, scapole che si chiudono dietro.",dont:"Non dondolare, non tirare col collo, non chiudere le spalle avanti.",feel:"Dorsali, romboidi, trapezio medio, bicipiti come supporto."},
+{name:"Upper Back Machine",group:"Schiena",reps:"3 x 10",sets:3,how:"Petto appoggiato, gomiti leggermente sotto le spalle, tira chiudendo le scapole.",dont:"Non stringere troppo la presa, non alzare le spalle, non compensare con la schiena.",feel:"Parte alta schiena, deltoide posteriore, romboidi."},
+{name:"Alzate Laterali",group:"Spalle",reps:"3 x 12",sets:3,how:"Gomiti morbidi, alza fino circa altezza spalle, movimento lento.",dont:"Non oscillare, non salire oltre misura, non caricare troppo.",feel:"Deltoide laterale."},
+{name:"Arnold Press",group:"Spalle",reps:"3 x 10",sets:3,how:"Parti coi manubri davanti, ruota e spingi sopra la testa con controllo.",dont:"Non inarcare la schiena, non spingere con slancio, non chiudere il collo nelle spalle.",feel:"Deltoidi anteriori e laterali, tricipiti."},
+{name:"Plank Laterale con Disco",group:"Core finale",reps:"3 x 30-40\" per lato",sets:3,how:"Gomito sotto spalla, bacino alto, disco stabile sul fianco.",dont:"Non crollare col bacino, non ruotare il busto, non caricare se perdi linea.",feel:"Obliqui, quadrato dei lombi, gluteo medio."},
+{name:"Crunch Obliqui",group:"Core finale",reps:"3 x 20",sets:3,how:"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.",dont:"Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.",feel:"Obliqui, retto addominale, controllo del core."},
+{name:"Cardio Intervallato",group:"Cardio",reps:"15 min - 1' veloce / 1' lento",sets:1,how:"Alterna 1 minuto intenso e 1 minuto lento senza arrivare fuori controllo.",dont:"Non partire troppo forte, non correre se dà fastidio alle ginocchia.",feel:"Fiato, consumo calorico, resistenza."}
+],
+B:[
+{name:"Plank",group:"Core iniziale",reps:"3 x 60\"",sets:3,how:"Gomiti sotto le spalle, addome contratto, glutei stretti, corpo in linea.",dont:"Non inarcare, non alzare troppo il sedere, non spingere la testa avanti.",feel:"Core profondo, retto addominale, glutei, spalle."},
+{name:"Crunch Obliqui",group:"Core iniziale",reps:"3 x 20",sets:3,how:"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.",dont:"Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.",feel:"Obliqui, retto addominale, controllo del core."},
+{name:"Stacco Gambe Semitese",group:"Glutei/Femorali",reps:"4 x 8",sets:4,how:"Ginocchia morbide, manubri vicini alle gambe, scendi flettendo l’anca.",dont:"Non arrotondare la schiena, non piegare troppo le ginocchia, non scendere senza controllo.",feel:"Femorali, glutei, catena posteriore."},
+{name:"Hip Thrust Machine",group:"Glutei",reps:"3 x 12",sets:3,how:"Spingi dal tallone/centro piede, retroversione del bacino in alto, fermo 1 secondo.",dont:"Non iperestendere la schiena, non spingere solo coi quadricipiti, non chiudere le ginocchia.",feel:"Gluteo massimo; secondariamente femorali e gluteo medio."},
+{name:"Adductor Machine",group:"Glutei/Gambe",reps:"3 x 15",sets:3,how:"Chiudi le gambe controllando il movimento, bacino stabile e schiena appoggiata.",dont:"Non sbattere i pacchi peso, non slanciare, non compensare col busto.",feel:"Adduttori/interno coscia e stabilità del bacino."},
+{name:"Abductor Machine",group:"Glutei",reps:"3 x 15",sets:3,how:"Apri le ginocchia in modo controllato, busto leggermente inclinato se senti meglio il gluteo.",dont:"Non usare slanci, non rimbalzare, non scegliere un carico ingestibile.",feel:"Gluteo medio, gluteo piccolo, parte alta/laterale del gluteo."},
+{name:"Lat Machine Presa Larga",group:"Schiena",reps:"4 x 8-10",sets:4,how:"Tira la sbarra verso alto petto, gomiti verso il basso, petto aperto.",dont:"Non tirare dietro la nuca, non usare slancio, non chiudere le spalle.",feel:"Gran dorsale, parte alta schiena."},
+{name:"Push Down Corda",group:"Tricipiti",reps:"3 x 10",sets:3,how:"Gomiti fermi vicino al busto, estendi fino in fondo aprendo leggermente la corda.",dont:"Non muovere le spalle, non dondolare, non perdere controllo in risalita.",feel:"Tricipiti."},
+{name:"Curl al Cavo Basso",group:"Bicipiti",reps:"3 x 10",sets:3,how:"Gomiti fermi, tira la barra verso il petto e controlla la discesa.",dont:"Non oscillare, non portare i gomiti avanti, non accorciare il movimento.",feel:"Bicipiti e brachiale."},
+{name:"Alzate Laterali",group:"Spalle",reps:"3 x 12",sets:3,how:"Gomiti morbidi, alza fino circa altezza spalle, movimento lento.",dont:"Non oscillare, non salire oltre misura, non caricare troppo.",feel:"Deltoide laterale."},
+{name:"Plank su Fitball",group:"Core finale",reps:"3 x 45\"",sets:3,how:"Gomiti sulla fitball, glutei e addome stretti, corpo in linea.",dont:"Non inarcare la zona lombare, non alzare troppo il bacino, non trattenere il respiro.",feel:"Addome profondo, retto addominale, glutei, stabilizzatori delle spalle."},
+{name:"Plank Laterale con Disco",group:"Core finale",reps:"3 x 30-40\" per lato",sets:3,how:"Gomito sotto spalla, bacino alto, disco stabile sul fianco.",dont:"Non crollare col bacino, non ruotare il busto, non caricare se perdi linea.",feel:"Obliqui, quadrato dei lombi, gluteo medio."},
+{name:"Cardio",group:"Cardio",reps:"15 min elittica o tapis inclinato",sets:1,how:"Elittica o tapis inclinato a intensità moderata.",dont:"Non correre se senti fastidio, non aggrapparti troppo, non chiudere la postura.",feel:"Fiato e consumo calorico."}
+]};
+let workouts=JSON.parse(localStorage.getItem('workoutsV3')||'null')||defaultWorkouts;
 let current='A', timerInt=null, timerLeft=0;
 function key(d,i,s){return `workout_${d}_${i}_${s}`} function ckey(d,i,s){return `check_${d}_${i}_${s}`}
-function render(day){const root=document.getElementById('day'+day);root.innerHTML='';workouts[day].forEach((ex,i)=>{let inputs='', checks='';for(let s=1;s<=ex[3];s++){const v=localStorage.getItem(key(day,i,s))||'';const done=localStorage.getItem(ckey(day,i,s))==='1';inputs+=`<div><label>Serie ${s}</label><input inputmode="decimal" placeholder="kg / note" value="${v}" oninput="save('${day}',${i},${s},this)" class="${v?'done':''}"></div>`;checks+=`<button class="check ${done?'done':''}" onclick="toggleCheck('${day}',${i},${s},this)">✓ S${s}</button>`}const g=guides[ex[0]];root.innerHTML+=`<div class="exercise"><div class="top"><h2>${i+1}. ${ex[0]}</h2><span class="tag">${ex[1]}</span></div><div class="details">${ex[2]}</div><div class="guide"><div><b>Come farlo:</b> ${g[0]}</div><div><b>Non fare:</b> ${g[1]}</div><div><b>Dovresti sentire:</b> ${g[2]}</div></div><div class="sets">${inputs}</div><div class="checkline">${checks}</div></div>`});updateStats()}
+function render(day){const root=document.getElementById('day'+day);root.innerHTML='';workouts[day].forEach((ex,i)=>{let inputs='',checks='';for(let s=1;s<=Number(ex.sets);s++){const v=localStorage.getItem(key(day,i,s))||'';const done=localStorage.getItem(ckey(day,i,s))==='1';inputs+=`<div><label>Serie ${s}</label><input inputmode="decimal" placeholder="kg / note" value="${v}" oninput="save('${day}',${i},${s},this)" class="${v?'done':''}"></div>`;checks+=`<button class="check ${done?'done':''}" onclick="toggleCheck('${day}',${i},${s},this)">✓ S${s}</button>`}root.innerHTML+=`<div class="exercise"><div class="top"><h2>${i+1}. ${ex.name}</h2><span class="tag">${ex.group}</span></div><div class="details">${ex.reps}</div><div class="guide"><div><b>Come farlo:</b> ${ex.how}</div><div><b>Non fare:</b> ${ex.dont}</div><div><b>Dovresti sentire:</b> ${ex.feel}</div></div><div class="sets">${inputs}</div><div class="checkline">${checks}</div></div>`});updateStats();renderProgressButtons()}
+function renderEditor(){const root=document.getElementById('editor');root.innerHTML=`<h2>Giorno ${current}</h2>`;workouts[current].forEach((ex,i)=>{root.innerHTML+=`<div class="editorCard"><div class="top"><h2>${i+1}. ${ex.name||'Nuovo esercizio'}</h2><button class="small danger" onclick="deleteExercise(${i})">Elimina</button></div><div class="formgrid"><div><label>Nome</label><input id="e_name_${i}" value="${escapeAttr(ex.name)}"></div><div><label>Gruppo</label><input id="e_group_${i}" value="${escapeAttr(ex.group)}"></div><div><label>Serie</label><input id="e_sets_${i}" inputmode="numeric" value="${ex.sets}"></div><div><label>Ripetizioni</label><input id="e_reps_${i}" value="${escapeAttr(ex.reps)}"></div></div><label>Come farlo</label><textarea id="e_how_${i}">${escapeText(ex.how)}</textarea><label>Non fare</label><textarea id="e_dont_${i}">${escapeText(ex.dont)}</textarea><label>Dovresti sentire</label><textarea id="e_feel_${i}">${escapeText(ex.feel)}</textarea><div class="actions"><button class="small" onclick="moveExercise(${i},-1)">Su</button><button class="small" onclick="moveExercise(${i},1)">Giù</button></div></div>`})}
+function escapeAttr(s){return String(s||'').replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;')} function escapeText(s){return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;')}
+function saveWorkoutEdit(){workouts[current]=workouts[current].map((ex,i)=>({name:val(`e_name_${i}`),group:val(`e_group_${i}`),sets:Math.max(1,parseInt(val(`e_sets_${i}`)||1)),reps:val(`e_reps_${i}`),how:val(`e_how_${i}`),dont:val(`e_dont_${i}`),feel:val(`e_feel_${i}`)}));localStorage.setItem('workoutsV3',JSON.stringify(workouts));render('A');render('B');renderEditor();alert('Scheda salvata')}
+function val(id){return document.getElementById(id).value.trim()}
+function addExercise(){workouts[current].push({name:"Nuovo esercizio",group:"Gruppo",sets:3,reps:"3 x 10",how:"Descrivi l'esecuzione.",dont:"Descrivi cosa evitare.",feel:"Descrivi i muscoli target."});renderEditor()}
+function deleteExercise(i){if(confirm('Eliminare esercizio?')){workouts[current].splice(i,1);localStorage.setItem('workoutsV3',JSON.stringify(workouts));renderEditor();render('A');render('B')}}
+function moveExercise(i,dir){const j=i+dir;if(j<0||j>=workouts[current].length)return;[workouts[current][i],workouts[current][j]]=[workouts[current][j],workouts[current][i]];renderEditor()}
 function save(d,i,s,el){localStorage.setItem(key(d,i,s),el.value);el.classList.toggle('done',!!el.value)}
 function toggleCheck(d,i,s,btn){const k=ckey(d,i,s),n=localStorage.getItem(k)==='1'?'0':'1';localStorage.setItem(k,n);btn.classList.toggle('done',n==='1');updateStats()}
-function showDay(d){current=d;document.getElementById('dayA').classList.toggle('hidden',d!=='A');document.getElementById('dayB').classList.toggle('hidden',d!=='B');document.getElementById('tabA').classList.toggle('active',d==='A');document.getElementById('tabB').classList.toggle('active',d==='B');updateStats();scrollTo({top:0,behavior:'smooth'})}
-function updateStats(){let tot=0,done=0;workouts[current].forEach((ex,i)=>{for(let s=1;s<=ex[3];s++){tot++;if(localStorage.getItem(ckey(current,i,s))==='1')done++}});document.getElementById('completedStat').textContent=tot?Math.round(done/tot*100)+'%':'0%';document.getElementById('setsStat').textContent=done+'/'+tot;document.getElementById('dayStat').textContent=current}
+function showDay(d){current=d;document.getElementById('dayA').classList.toggle('hidden',d!=='A');document.getElementById('dayB').classList.toggle('hidden',d!=='B');document.getElementById('tabA').classList.toggle('active',d==='A');document.getElementById('tabB').classList.toggle('active',d==='B');updateStats();renderEditor();scrollTo({top:0,behavior:'smooth'})}
+function updateStats(){let tot=0,done=0;(workouts[current]||[]).forEach((ex,i)=>{for(let s=1;s<=Number(ex.sets);s++){tot++;if(localStorage.getItem(ckey(current,i,s))==='1')done++}});document.getElementById('completedStat').textContent=tot?Math.round(done/tot*100)+'%':'0%';document.getElementById('setsStat').textContent=done+'/'+tot;document.getElementById('dayStat').textContent=current}
 function startTimer(sec){clearInterval(timerInt);timerLeft=sec;updateTimer();timerInt=setInterval(()=>{timerLeft--;updateTimer();if(timerLeft<=0){clearInterval(timerInt);navigator.vibrate&&navigator.vibrate(250)}},1000)}
 function updateTimer(){let m=String(Math.floor(timerLeft/60)).padStart(2,'0'),s=String(timerLeft%60).padStart(2,'0');document.getElementById('timerLabel').textContent=`${m}:${s}`}
-function showView(v){['Workout','Progress','Weight'].forEach(x=>document.getElementById('view'+x).classList.add('hidden'));document.getElementById('view'+v[0].toUpperCase()+v.slice(1)).classList.remove('hidden');['Workout','Progress','Weight'].forEach(x=>document.getElementById('tab'+x).classList.remove('active'));document.getElementById('tab'+v[0].toUpperCase()+v.slice(1)).classList.add('active');if(v==='progress')drawProgress('Hip Thrust Machine');if(v==='weight')drawWeight()}
-function saveSession(){const sessions=JSON.parse(localStorage.getItem('sessions')||'[]');let sess={date:new Date().toLocaleDateString('it-IT'),day:current,ex:{}};workouts[current].forEach((ex,i)=>{let vals=[];for(let s=1;s<=ex[3];s++){const raw=(localStorage.getItem(key(current,i,s))||'').replace(',','.');const num=parseFloat(raw);if(!isNaN(num))vals.push(num)}sess.ex[ex[0]]=vals});sessions.push(sess);localStorage.setItem('sessions',JSON.stringify(sessions));alert('Seduta salvata')}
+function showView(v){['Workout','Edit','Progress','Weight'].forEach(x=>document.getElementById('view'+x).classList.add('hidden'));document.getElementById('view'+cap(v)).classList.remove('hidden');['Workout','Edit','Progress','Weight'].forEach(x=>document.getElementById('tab'+x).classList.remove('active'));document.getElementById('tab'+cap(v)).classList.add('active');if(v==='edit')renderEditor();if(v==='progress')drawProgress('Hip Thrust Machine');if(v==='weight')drawWeight()}
+function cap(s){return s[0].toUpperCase()+s.slice(1)}
+function saveSession(){const sessions=JSON.parse(localStorage.getItem('sessions')||'[]');let sess={date:new Date().toLocaleDateString('it-IT'),day:current,ex:{}};workouts[current].forEach((ex,i)=>{let vals=[];for(let s=1;s<=Number(ex.sets);s++){const raw=(localStorage.getItem(key(current,i,s))||'').replace(',','.');const num=parseFloat(raw);if(!isNaN(num))vals.push(num)}sess.ex[ex.name]=vals});sessions.push(sess);localStorage.setItem('sessions',JSON.stringify(sessions));alert('Seduta salvata')}
 function saveBodyWeight(){const val=parseFloat((document.getElementById('bodyWeight').value||'').replace(',','.'));if(isNaN(val))return alert('Inserisci un peso valido');const arr=JSON.parse(localStorage.getItem('bodyWeights')||'[]');arr.push({date:new Date().toLocaleDateString('it-IT'),kg:val});localStorage.setItem('bodyWeights',JSON.stringify(arr));document.getElementById('bodyWeight').value='';drawWeight()}
 function drawLine(canvasId,points,title){const c=document.getElementById(canvasId),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle='#f3f4f6';ctx.font='24px system-ui';ctx.fillText(title,24,36);ctx.strokeStyle='#2b303b';ctx.beginPath();ctx.moveTo(40,360);ctx.lineTo(800,360);ctx.stroke();if(points.length===0){ctx.fillStyle='#9ca3af';ctx.font='18px system-ui';ctx.fillText('Nessun dato salvato',24,90);return}const vals=points.map(p=>p.v),min=Math.min(...vals),max=Math.max(...vals),range=Math.max(1,max-min);ctx.strokeStyle='#a78bfa';ctx.lineWidth=4;ctx.beginPath();points.forEach((p,i)=>{const x=60+i*(720/Math.max(1,points.length-1));const y=340-((p.v-min)/range)*250;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();ctx.fillStyle='#c4b5fd';points.forEach((p,i)=>{const x=60+i*(720/Math.max(1,points.length-1));const y=340-((p.v-min)/range)*250;ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();ctx.fillText(String(p.v),x-10,y-12)})}
 function drawProgress(name){const sessions=JSON.parse(localStorage.getItem('sessions')||'[]');const pts=sessions.map(s=>({v:Math.max(...(s.ex[name]||[]),NaN)})).filter(p=>!isNaN(p.v));drawLine('progressChart',pts,name)}
+function renderProgressButtons(){const root=document.getElementById('progressButtons'); if(!root)return; const names=[...new Set([...workouts.A,...workouts.B].map(x=>x.name))].filter(n=>!n.toLowerCase().includes('plank')&&!n.toLowerCase().includes('cardio')); root.innerHTML=names.map(n=>`<button onclick="drawProgress('${n.replaceAll("'","\\'")}')">${n}</button>`).join('')}
 function drawWeight(){const arr=JSON.parse(localStorage.getItem('bodyWeights')||'[]').map(x=>({v:x.kg}));drawLine('weightChart',arr,'Peso corporeo')}
-function resetData(){if(confirm('Cancellare tutti i dati salvati?')){localStorage.clear();render('A');render('B');updateStats();drawWeight()}}
-function exportData(){const data={sessions:JSON.parse(localStorage.getItem('sessions')||'[]'),bodyWeights:JSON.parse(localStorage.getItem('bodyWeights')||'[]')};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='allenamento_dati.json';a.click()}
+function exportData(){const data={workouts,sessions:JSON.parse(localStorage.getItem('sessions')||'[]'),bodyWeights:JSON.parse(localStorage.getItem('bodyWeights')||'[]')};downloadJson(data,'allenamento_dati.json')}
+function exportBackup(){const data={workouts,sessions:JSON.parse(localStorage.getItem('sessions')||'[]'),bodyWeights:JSON.parse(localStorage.getItem('bodyWeights')||'[]')};downloadJson(data,'allenamento_backup.json')}
+function downloadJson(data,name){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click()}
+function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(data.workouts){workouts=data.workouts;localStorage.setItem('workoutsV3',JSON.stringify(workouts))}if(data.sessions)localStorage.setItem('sessions',JSON.stringify(data.sessions));if(data.bodyWeights)localStorage.setItem('bodyWeights',JSON.stringify(data.bodyWeights));render('A');render('B');renderEditor();alert('Backup importato')}catch(err){alert('File non valido')}};r.readAsText(f)}
+function resetWorkoutOnly(){if(confirm('Ripristinare solo la scheda base? I dati peso/sedute restano.')){workouts=JSON.parse(JSON.stringify(defaultWorkouts));localStorage.setItem('workoutsV3',JSON.stringify(workouts));render('A');render('B');renderEditor()}}
+function resetAll(){if(confirm('Cancellare tutti i dati salvati?')){localStorage.clear();workouts=JSON.parse(JSON.stringify(defaultWorkouts));render('A');render('B');renderEditor();updateStats();drawWeight()}}
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js')}
-render('A');render('B');updateTimer();
+render('A');render('B');renderEditor();updateTimer();
 </script>
 </body>
 </html>
