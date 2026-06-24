@@ -1,10 +1,10 @@
 {
-  "name": "Allenamento Personale",
+  "name": "NERV Training Log",
   "short_name": "Allenamento",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#090b10",
-  "theme_color": "#090b10",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "icon-192.png",
