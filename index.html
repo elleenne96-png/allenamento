@@ -11,40 +11,32 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Allenamento</title>
 <style>
-:root{
-  --bg:#090b10;--panel:#11141c;--card:#171b25;--card2:#202636;
-  --text:#f4f4f5;--muted:#9ca3af;--line:#2d3445;
-  --violet:#a78bfa;--violet2:#c4b5fd;--green:#34d399;--red:#fca5a5;--yellow:#fbbf24;
-}
+:root{--bg:#090b10;--panel:#11141c;--card:#171b25;--card2:#202636;--text:#f4f4f5;--muted:#9ca3af;--line:#2d3445;--violet:#a78bfa;--violet2:#c4b5fd;--green:#34d399;--red:#fca5a5;--yellow:#fbbf24}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;padding-bottom:88px}
-header{position:sticky;top:0;z-index:20;background:rgba(9,11,16,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 14px 12px}
-h1{margin:0;font-size:22px;letter-spacing:-.02em}
-main{max-width:900px;margin:auto;padding:14px}
-.nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(9,11,16,.97);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
-.nav button{font-size:11px;padding:8px 4px;border-radius:13px;background:transparent;color:var(--muted);border:0;font-weight:800}
-.nav button.active{background:var(--card2);color:var(--violet2)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;padding-bottom:92px}
+header{position:sticky;top:0;z-index:20;background:rgba(9,11,16,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 14px 12px}
+h1{margin:0;font-size:22px;letter-spacing:-.02em}.subtitle{color:var(--muted);font-size:13px;margin-top:2px}
+main{max-width:920px;margin:auto;padding:14px}.hidden{display:none!important}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(9,11,16,.98);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+.nav button{font-size:11px;padding:8px 3px;border-radius:13px;background:transparent;color:var(--muted);border:0;font-weight:850}.nav button.active{background:var(--card2);color:var(--violet2)}
 button{border:0;border-radius:14px;background:var(--card2);color:var(--text);font-weight:850;padding:11px 13px;font-size:15px}
 button.primary{background:var(--violet);color:#111}button.good{background:#123326;color:#b7f7d8}button.danger{background:#3a1c1c;color:var(--red)}button.small{font-size:12px;padding:8px 10px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;margin:12px 0}
+.card,.exercise,.editorItem{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;margin:12px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:12px}.stat b{display:block;color:var(--violet2);font-size:21px}.stat span{color:var(--muted);font-size:12px}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
 .muted{color:var(--muted);font-size:13px;line-height:1.35}.tag{font-size:12px;color:#111;background:var(--green);border-radius:999px;padding:4px 9px;font-weight:900;white-space:nowrap}
 h2{font-size:18px;margin:0 0 6px}h3{font-size:16px;margin:0 0 8px}
 input,textarea,select{width:100%;padding:12px;border-radius:14px;border:1px solid var(--line);background:#0d1018;color:var(--text);font-size:16px}textarea{min-height:74px}
-label{display:block;color:var(--muted);font-size:12px;margin:8px 0 5px}.hidden{display:none!important}
-.exercise{background:var(--card);border:1px solid var(--line);border-radius:22px;margin:12px 0;padding:14px}
-.guide{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0;font-size:13px;line-height:1.35}.guide div{margin:5px 0}
+label{display:block;color:var(--muted);font-size:12px;margin:8px 0 5px}.guide{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0;font-size:13px;line-height:1.35}.guide div{margin:5px 0}
 .setGrid{display:grid;grid-template-columns:34px 1fr 1fr 1fr 46px;gap:6px;align-items:end}.setGrid.head{color:var(--muted);font-size:12px;margin-bottom:4px}.check{height:44px;border-radius:13px;padding:0}.check.done{background:#123326;color:#b7f7d8}
-.timer{font-size:48px;font-weight:950;color:var(--violet2);text-align:center;letter-spacing:-.03em}.divider{height:1px;background:var(--line);margin:12px 0}
+.timer{font-size:48px;font-weight:950;color:var(--violet2);text-align:center;letter-spacing:-.03em}.dayTabs{display:flex;gap:8px;margin:8px 0 12px}.dayTabs button.active{background:var(--violet);color:#111}
 canvas{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:22px;margin:12px 0;padding:8px}
-.dayTabs{display:flex;gap:8px;margin:8px 0 12px}.dayTabs button.active{background:var(--violet);color:#111}
-.editorItem{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:12px;margin:10px 0}
-.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:12px;margin:3px}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:12px;margin:3px}.listItem{border-top:1px solid var(--line);padding:10px 0}.listItem:first-child{border-top:0}
+.notice{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:12px;margin:10px 0;color:var(--muted);font-size:13px;line-height:1.35}
 </style>
 </head>
 <body>
-<header><h1>Allenamento</h1><div class="muted" id="subtitle">Scheda personalizzata</div></header>
+<header><h1>Allenamento</h1><div class="subtitle">App personale · scheda modificabile · progressi · profilo</div></header>
 
 <main>
 <section id="homeView">
@@ -52,16 +44,18 @@ canvas{width:100%;background:var(--panel);border:1px solid var(--line);border-ra
     <div class="stat"><b id="homeLast">—</b><span>ultima seduta</span></div>
     <div class="stat"><b id="homeSessions">0</b><span>sedute salvate</span></div>
     <div class="stat"><b id="homeWeight">—</b><span>ultimo peso</span></div>
+    <div class="stat"><b id="homeBest">—</b><span>ultimo PR</span></div>
   </div>
   <div class="card">
     <h2>Inizia allenamento</h2>
-    <p class="muted">Scegli il giorno, registra pesi, ripetizioni reali, RPE e serie completate.</p>
+    <p class="muted">Registra kg, ripetizioni reali, RPE, serie completate. Il timer parte automaticamente quando spunti una serie.</p>
     <div class="row"><button class="primary" onclick="startWorkout('A')">Giorno A</button><button class="primary" onclick="startWorkout('B')">Giorno B</button></div>
   </div>
   <div class="card">
-    <h2>Installazione iPhone</h2>
-    <p class="muted">Apri da Safari → Condividi → Aggiungi alla schermata Home. Dopo l’aggiornamento, chiudi e riapri l’app dalla Home.</p>
+    <h2>Storico recente</h2>
+    <div id="recentSessions" class="muted">Nessuna seduta salvata.</div>
   </div>
+  <div class="notice">Per iPhone: apri da Safari → Condividi → Aggiungi alla schermata Home. Dopo aver aggiornato i file su GitHub, chiudi e riapri l’app dalla Home.</div>
 </section>
 
 <section id="workoutView" class="hidden">
@@ -69,7 +63,7 @@ canvas{width:100%;background:var(--panel);border:1px solid var(--line);border-ra
   <div class="grid">
     <div class="stat"><b id="completePct">0%</b><span>completamento</span></div>
     <div class="stat"><b id="doneSets">0/0</b><span>serie fatte</span></div>
-    <div class="stat"><b id="volumeStat">0</b><span>volume stimato</span></div>
+    <div class="stat"><b id="volumeStat">0</b><span>volume seduta</span></div>
   </div>
   <div class="card">
     <h2>Timer recupero</h2>
@@ -81,10 +75,10 @@ canvas{width:100%;background:var(--panel);border:1px solid var(--line);border-ra
 </section>
 
 <section id="editView" class="hidden">
-  <div class="dayTabs"><button id="editAButton" class="active" onclick="switchDay(currentDay,'A')">Giorno A</button><button id="editBButton" onclick="switchEditDay('B')">Giorno B</button></div>
+  <div class="dayTabs"><button id="editAButton" class="active" onclick="switchEditDay('A')">Giorno A</button><button id="editBButton" onclick="switchEditDay('B')">Giorno B</button></div>
   <div class="card">
     <h2>Modifica scheda</h2>
-    <p class="muted">Qui le modifiche funzionano senza toccare GitHub: aggiungi, elimina, riordina e cambia esercizi. Premi sempre “Salva scheda”.</p>
+    <p class="muted">Aggiungi, elimina, duplica, riordina e modifica ogni esercizio. Poi premi “Salva scheda”.</p>
     <div class="row"><button class="primary" onclick="addExercise()">+ Esercizio</button><button onclick="saveWorkoutFromEditor()">Salva scheda</button><button onclick="exportBackup()">Backup</button><button onclick="document.getElementById('fileImport').click()">Importa</button><button class="danger" onclick="resetWorkout()">Scheda base</button></div>
     <input id="fileImport" class="hidden" type="file" accept="application/json" onchange="importBackup(event)">
   </div>
@@ -94,7 +88,7 @@ canvas{width:100%;background:var(--panel);border:1px solid var(--line);border-ra
 <section id="progressView" class="hidden">
   <div class="card">
     <h2>Progressi</h2>
-    <p class="muted">Il grafico usa il miglior peso registrato nelle sedute salvate per ogni esercizio.</p>
+    <p class="muted">Il grafico usa il miglior peso registrato nelle sedute salvate. I PR sono calcolati automaticamente.</p>
     <select id="progressSelect" onchange="drawProgress()"></select>
   </div>
   <canvas id="progressCanvas" width="840" height="420"></canvas>
@@ -103,12 +97,19 @@ canvas{width:100%;background:var(--panel);border:1px solid var(--line);border-ra
 
 <section id="profileView" class="hidden">
   <div class="card">
-    <h2>Peso corporeo</h2>
-    <div class="grid"><div><label>Kg</label><input id="bodyWeightInput" inputmode="decimal" placeholder="es. 66.8"></div><div><label>Vita / note</label><input id="bodyNoteInput" placeholder="opzionale"></div></div>
-    <div class="row"><button class="primary" onclick="saveBodyWeight()">Salva peso</button><button onclick="exportBackup()">Backup dati</button></div>
+    <h2>Peso e misure</h2>
+    <div class="grid">
+      <div><label>Peso kg</label><input id="bodyWeightInput" inputmode="decimal" placeholder="es. 66.8"></div>
+      <div><label>Vita cm</label><input id="waistInput" inputmode="decimal" placeholder="opzionale"></div>
+      <div><label>Fianchi cm</label><input id="hipsInput" inputmode="decimal" placeholder="opzionale"></div>
+      <div><label>Coscia cm</label><input id="thighInput" inputmode="decimal" placeholder="opzionale"></div>
+    </div>
+    <label>Note</label><input id="bodyNoteInput" placeholder="es. ciclo, gonfiore, fame, energia">
+    <div class="row"><button class="primary" onclick="saveBodyStats()">Salva misurazione</button><button onclick="exportBackup()">Backup dati</button></div>
   </div>
   <canvas id="weightCanvas" width="840" height="420"></canvas>
-  <div class="card"><h2>Dati salvati</h2><p class="muted">I dati restano sul dispositivo. Usa Backup prima di cambiare telefono o browser.</p><button class="danger" onclick="resetAll()">Azzera tutto</button></div>
+  <div class="card"><h2>Misurazioni recenti</h2><div id="measureList" class="muted"></div></div>
+  <div class="card"><h2>Gestione dati</h2><p class="muted">I dati restano sul dispositivo. Fai backup prima di cambiare telefono o browser.</p><button class="danger" onclick="resetAll()">Azzera tutto</button></div>
 </section>
 </main>
 
@@ -121,161 +122,78 @@ canvas{width:100%;background:var(--panel);border:1px solid var(--line);border-ra
 </nav>
 
 <script>
+function makeEx(name,group,reps,sets,how,dont,feel){return{id:(crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random())),name,group,reps,sets,how,dont,feel}}
 const defaultWorkout = {
  A:[
-  ex("Plank su Fitball","Core iniziale","3 x 45\"",3,"Gomiti sulla fitball, glutei e addome stretti, corpo in linea.","Non inarcare la zona lombare, non alzare troppo il bacino, non trattenere il respiro.","Addome profondo, retto addominale, glutei, stabilizzatori delle spalle."),
-  ex("Crunch Obliqui","Core iniziale","3 x 20",3,"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.","Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.","Obliqui, retto addominale, controllo del core."),
-  ex("Hip Thrust Machine","Glutei","4 x 8-10",4,"Spingi dal tallone/centro piede, retroversione del bacino in alto, fermo 1 secondo.","Non iperestendere la schiena, non spingere solo coi quadricipiti, non chiudere le ginocchia.","Gluteo massimo; secondariamente femorali e gluteo medio."),
-  ex("Abductor Machine","Glutei","4 x 15 - ultima serie 15 + 15 molleggiate",4,"Apri le ginocchia in modo controllato, busto leggermente inclinato se senti meglio il gluteo.","Non usare slanci, non rimbalzare, non scegliere un carico ingestibile.","Gluteo medio, gluteo piccolo, parte alta/laterale del gluteo."),
-  ex("Glute Bridge Frog","Glutei","3 x 15-20",3,"Stance frog, ginocchia aperte, spingi il bacino in alto e stringi il gluteo.","Non inarcare la schiena, non chiudere le ginocchia, non andare veloce.","Gluteo massimo e medio, minimo coinvolgimento quadricipiti."),
-  ex("Pulley Triangolo","Schiena","4 x 8-10",4,"Tira verso l’addome, petto aperto, scapole che si chiudono dietro.","Non dondolare, non tirare col collo, non chiudere le spalle avanti.","Dorsali, romboidi, trapezio medio, bicipiti come supporto."),
-  ex("Upper Back Machine","Schiena","3 x 10",3,"Petto appoggiato, gomiti leggermente sotto le spalle, tira chiudendo le scapole.","Non stringere troppo la presa, non alzare le spalle, non compensare con la schiena.","Parte alta schiena, deltoide posteriore, romboidi."),
-  ex("Alzate Laterali","Spalle","3 x 12",3,"Gomiti morbidi, alza fino circa altezza spalle, movimento lento.","Non oscillare, non salire oltre misura, non caricare troppo.","Deltoide laterale."),
-  ex("Arnold Press","Spalle","3 x 10",3,"Parti coi manubri davanti, ruota e spingi sopra la testa con controllo.","Non inarcare la schiena, non spingere con slancio, non chiudere il collo nelle spalle.","Deltoidi anteriori e laterali, tricipiti."),
-  ex("Plank Laterale con Disco","Core finale","3 x 30-40\" per lato",3,"Gomito sotto spalla, bacino alto, disco stabile sul fianco.","Non crollare col bacino, non ruotare il busto, non caricare se perdi linea.","Obliqui, quadrato dei lombi, gluteo medio."),
-  ex("Crunch Obliqui","Core finale","3 x 20",3,"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.","Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.","Obliqui, retto addominale, controllo del core."),
-  ex("Cardio Intervallato","Cardio","15 min - 1' veloce / 1' lento",1,"Alterna 1 minuto intenso e 1 minuto lento senza arrivare fuori controllo.","Non partire troppo forte, non correre se dà fastidio alle ginocchia.","Fiato, consumo calorico, resistenza.")
+  makeEx("Plank su Fitball","Core iniziale","3 x 45\"",3,"Gomiti sulla fitball, glutei e addome stretti, corpo in linea.","Non inarcare la zona lombare, non alzare troppo il bacino, non trattenere il respiro.","Addome profondo, retto addominale, glutei, stabilizzatori delle spalle."),
+  makeEx("Crunch Obliqui","Core iniziale","3 x 20",3,"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.","Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.","Obliqui, retto addominale, controllo del core."),
+  makeEx("Hip Thrust Machine","Glutei","4 x 8-10",4,"Spingi dal tallone/centro piede, retroversione del bacino in alto, fermo 1 secondo.","Non iperestendere la schiena, non spingere solo coi quadricipiti, non chiudere le ginocchia.","Gluteo massimo; secondariamente femorali e gluteo medio."),
+  makeEx("Abductor Machine","Glutei","4 x 15 - ultima serie 15 + 15 molleggiate",4,"Apri le ginocchia in modo controllato, busto leggermente inclinato se senti meglio il gluteo.","Non usare slanci, non rimbalzare, non scegliere un carico ingestibile.","Gluteo medio, gluteo piccolo, parte alta/laterale del gluteo."),
+  makeEx("Glute Bridge Frog","Glutei","3 x 15-20",3,"Stance frog, ginocchia aperte, spingi il bacino in alto e stringi il gluteo.","Non inarcare la schiena, non chiudere le ginocchia, non andare veloce.","Gluteo massimo e medio, minimo coinvolgimento quadricipiti."),
+  makeEx("Pulley Triangolo","Schiena","4 x 8-10",4,"Tira verso l’addome, petto aperto, scapole che si chiudono dietro.","Non dondolare, non tirare col collo, non chiudere le spalle avanti.","Dorsali, romboidi, trapezio medio, bicipiti come supporto."),
+  makeEx("Upper Back Machine","Schiena","3 x 10",3,"Petto appoggiato, gomiti leggermente sotto le spalle, tira chiudendo le scapole.","Non stringere troppo la presa, non alzare le spalle, non compensare con la schiena.","Parte alta schiena, deltoide posteriore, romboidi."),
+  makeEx("Alzate Laterali","Spalle","3 x 12",3,"Gomiti morbidi, alza fino circa altezza spalle, movimento lento.","Non oscillare, non salire oltre misura, non caricare troppo.","Deltoide laterale."),
+  makeEx("Arnold Press","Spalle","3 x 10",3,"Parti coi manubri davanti, ruota e spingi sopra la testa con controllo.","Non inarcare la schiena, non spingere con slancio, non chiudere il collo nelle spalle.","Deltoidi anteriori e laterali, tricipiti."),
+  makeEx("Plank Laterale con Disco","Core finale","3 x 30-40\" per lato",3,"Gomito sotto spalla, bacino alto, disco stabile sul fianco.","Non crollare col bacino, non ruotare il busto, non caricare se perdi linea.","Obliqui, quadrato dei lombi, gluteo medio."),
+  makeEx("Crunch Obliqui","Core finale","3 x 20",3,"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.","Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.","Obliqui, retto addominale, controllo del core."),
+  makeEx("Cardio Intervallato","Cardio","15 min - 1' veloce / 1' lento",1,"Alterna 1 minuto intenso e 1 minuto lento senza arrivare fuori controllo.","Non partire troppo forte, non correre se dà fastidio alle ginocchia.","Fiato, consumo calorico, resistenza.")
  ],
  B:[
-  ex("Plank","Core iniziale","3 x 60\"",3,"Gomiti sotto le spalle, addome contratto, glutei stretti, corpo in linea.","Non inarcare, non alzare troppo il sedere, non spingere la testa avanti.","Core profondo, retto addominale, glutei, spalle."),
-  ex("Crunch Obliqui","Core iniziale","3 x 20",3,"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.","Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.","Obliqui, retto addominale, controllo del core."),
-  ex("Stacco Gambe Semitese","Glutei/Femorali","4 x 8",4,"Ginocchia morbide, manubri vicini alle gambe, scendi flettendo l’anca.","Non arrotondare la schiena, non piegare troppo le ginocchia, non scendere senza controllo.","Femorali, glutei, catena posteriore."),
-  ex("Hip Thrust Machine","Glutei","3 x 12",3,"Spingi dal tallone/centro piede, retroversione del bacino in alto, fermo 1 secondo.","Non iperestendere la schiena, non spingere solo coi quadricipiti, non chiudere le ginocchia.","Gluteo massimo; secondariamente femorali e gluteo medio."),
-  ex("Adductor Machine","Glutei/Gambe","3 x 15",3,"Chiudi le gambe controllando il movimento, bacino stabile e schiena appoggiata.","Non sbattere i pacchi peso, non slanciare, non compensare col busto.","Adduttori/interno coscia e stabilità del bacino."),
-  ex("Abductor Machine","Glutei","3 x 15",3,"Apri le ginocchia in modo controllato, busto leggermente inclinato se senti meglio il gluteo.","Non usare slanci, non rimbalzare, non scegliere un carico ingestibile.","Gluteo medio, gluteo piccolo, parte alta/laterale del gluteo."),
-  ex("Lat Machine Presa Larga","Schiena","4 x 8-10",4,"Tira la sbarra verso alto petto, gomiti verso il basso, petto aperto.","Non tirare dietro la nuca, non usare slancio, non chiudere le spalle.","Gran dorsale, parte alta schiena."),
-  ex("Push Down Corda","Tricipiti","3 x 10",3,"Gomiti fermi vicino al busto, estendi fino in fondo aprendo leggermente la corda.","Non muovere le spalle, non dondolare, non perdere controllo in risalita.","Tricipiti."),
-  ex("Curl al Cavo Basso","Bicipiti","3 x 10",3,"Gomiti fermi, tira la barra verso il petto e controlla la discesa.","Non oscillare, non portare i gomiti avanti, non accorciare il movimento.","Bicipiti e brachiale."),
-  ex("Alzate Laterali","Spalle","3 x 12",3,"Gomiti morbidi, alza fino circa altezza spalle, movimento lento.","Non oscillare, non salire oltre misura, non caricare troppo.","Deltoide laterale."),
-  ex("Plank su Fitball","Core finale","3 x 45\"",3,"Gomiti sulla fitball, glutei e addome stretti, corpo in linea.","Non inarcare la zona lombare, non alzare troppo il bacino, non trattenere il respiro.","Addome profondo, retto addominale, glutei, stabilizzatori delle spalle."),
-  ex("Plank Laterale con Disco","Core finale","3 x 30-40\" per lato",3,"Gomito sotto spalla, bacino alto, disco stabile sul fianco.","Non crollare col bacino, non ruotare il busto, non caricare se perdi linea.","Obliqui, quadrato dei lombi, gluteo medio."),
-  ex("Cardio","Cardio","15 min elittica o tapis inclinato",1,"Elittica o tapis inclinato a intensità moderata.","Non correre se senti fastidio, non aggrapparti troppo, non chiudere la postura.","Fiato e consumo calorico.")
+  makeEx("Plank","Core iniziale","3 x 60\"",3,"Gomiti sotto le spalle, addome contratto, glutei stretti, corpo in linea.","Non inarcare, non alzare troppo il sedere, non spingere la testa avanti.","Core profondo, retto addominale, glutei, spalle."),
+  makeEx("Crunch Obliqui","Core iniziale","3 x 20",3,"Sali poco ruotando il busto verso il ginocchio opposto; espira mentre chiudi.","Non tirare il collo, non slanciare il busto, non staccare troppo la zona lombare.","Obliqui, retto addominale, controllo del core."),
+  makeEx("Stacco Gambe Semitese","Glutei/Femorali","4 x 8",4,"Ginocchia morbide, manubri vicini alle gambe, scendi flettendo l’anca.","Non arrotondare la schiena, non piegare troppo le ginocchia, non scendere senza controllo.","Femorali, glutei, catena posteriore."),
+  makeEx("Hip Thrust Machine","Glutei","3 x 12",3,"Spingi dal tallone/centro piede, retroversione del bacino in alto, fermo 1 secondo.","Non iperestendere la schiena, non spingere solo coi quadricipiti, non chiudere le ginocchia.","Gluteo massimo; secondariamente femorali e gluteo medio."),
+  makeEx("Adductor Machine","Glutei/Gambe","3 x 15",3,"Chiudi le gambe controllando il movimento, bacino stabile e schiena appoggiata.","Non sbattere i pacchi peso, non slanciare, non compensare col busto.","Adduttori/interno coscia e stabilità del bacino."),
+  makeEx("Abductor Machine","Glutei","3 x 15",3,"Apri le ginocchia in modo controllato, busto leggermente inclinato se senti meglio il gluteo.","Non usare slanci, non rimbalzare, non scegliere un carico ingestibile.","Gluteo medio, gluteo piccolo, parte alta/laterale del gluteo."),
+  makeEx("Lat Machine Presa Larga","Schiena","4 x 8-10",4,"Tira la sbarra verso alto petto, gomiti verso il basso, petto aperto.","Non tirare dietro la nuca, non usare slancio, non chiudere le spalle.","Gran dorsale, parte alta schiena."),
+  makeEx("Push Down Corda","Tricipiti","3 x 10",3,"Gomiti fermi vicino al busto, estendi fino in fondo aprendo leggermente la corda.","Non muovere le spalle, non dondolare, non perdere controllo in risalita.","Tricipiti."),
+  makeEx("Curl al Cavo Basso","Bicipiti","3 x 10",3,"Gomiti fermi, tira la barra verso il petto e controlla la discesa.","Non oscillare, non portare i gomiti avanti, non accorciare il movimento.","Bicipiti e brachiale."),
+  makeEx("Alzate Laterali","Spalle","3 x 12",3,"Gomiti morbidi, alza fino circa altezza spalle, movimento lento.","Non oscillare, non salire oltre misura, non caricare troppo.","Deltoide laterale."),
+  makeEx("Plank su Fitball","Core finale","3 x 45\"",3,"Gomiti sulla fitball, glutei e addome stretti, corpo in linea.","Non inarcare la zona lombare, non alzare troppo il bacino, non trattenere il respiro.","Addome profondo, retto addominale, glutei, stabilizzatori delle spalle."),
+  makeEx("Plank Laterale con Disco","Core finale","3 x 30-40\" per lato",3,"Gomito sotto spalla, bacino alto, disco stabile sul fianco.","Non crollare col bacino, non ruotare il busto, non caricare se perdi linea.","Obliqui, quadrato dei lombi, gluteo medio."),
+  makeEx("Cardio","Cardio","15 min elittica o tapis inclinato",1,"Elittica o tapis inclinato a intensità moderata.","Non correre se senti fastidio, non aggrapparti troppo, non chiudere la postura.","Fiato e consumo calorico.")
  ]
 };
-function ex(name,group,reps,sets,how,dont,feel){return{id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),name,group,reps,sets,how,dont,feel}}
-let workout = load("workoutV4", defaultWorkout);
-let currentDay = "A", editDay = "A", timer=null, timerLeft=0;
-
-function load(k, fallback){try{return JSON.parse(localStorage.getItem(k))||structuredClone(fallback)}catch{return structuredClone(fallback)}}
-function saveLocal(){localStorage.setItem("workoutV4", JSON.stringify(workout))}
-function showView(v){
-  ["home","workout","edit","progress","profile"].forEach(x=>{
-    document.getElementById(x+"View").classList.toggle("hidden", x!==v);
-    document.getElementById("nav"+cap(x)).classList.toggle("active", x===v);
-  });
-  if(v==="home") renderHome();
-  if(v==="workout") renderWorkout();
-  if(v==="edit") renderEditor();
-  if(v==="progress"){renderProgressSelect(); drawProgress(); renderRecords();}
-  if(v==="profile") drawWeight();
-  window.scrollTo({top:0,behavior:"smooth"});
-}
+function clone(x){return JSON.parse(JSON.stringify(x))}
+function get(k,f){try{return JSON.parse(localStorage.getItem(k))??clone(f)}catch{return clone(f)}}
+let workout=get("workoutFitPro",defaultWorkout), currentDay="A", editDay="A", timer=null, timerLeft=0;
+function storeWorkout(){localStorage.setItem("workoutFitPro",JSON.stringify(workout))}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function esc(s){return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll('"',"&quot;")}
+function showView(v){["home","workout","edit","progress","profile"].forEach(x=>{document.getElementById(x+"View").classList.toggle("hidden",x!==v);document.getElementById("nav"+cap(x)).classList.toggle("active",x===v)});if(v==="home")renderHome();if(v==="workout")renderWorkout();if(v==="edit")renderEditor();if(v==="progress"){renderProgressSelect();drawProgress();renderRecords()}if(v==="profile"){drawWeight();renderMeasures()}window.scrollTo({top:0,behavior:"smooth"})}
 function startWorkout(d){currentDay=d;showView("workout");switchDay(d)}
 function switchDay(d){currentDay=d;document.getElementById("dayAButton").classList.toggle("active",d==="A");document.getElementById("dayBButton").classList.toggle("active",d==="B");renderWorkout()}
 function switchEditDay(d){editDay=d;document.getElementById("editAButton").classList.toggle("active",d==="A");document.getElementById("editBButton").classList.toggle("active",d==="B");renderEditor()}
-function setKey(id,s,field){return `set_${id}_${s}_${field}`}
-function checkKey(id,s){return `done_${id}_${s}`}
-function renderWorkout(){
-  const root=document.getElementById("exerciseList"); root.innerHTML="";
-  workout[currentDay].forEach((e,idx)=>{
-    let rows=`<div class="setGrid head"><div></div><div>Kg</div><div>Rip.</div><div>RPE</div><div></div></div>`;
-    for(let s=1;s<=Number(e.sets);s++){
-      const kg=localStorage.getItem(setKey(e.id,s,"kg"))||"";
-      const reps=localStorage.getItem(setKey(e.id,s,"reps"))||"";
-      const rpe=localStorage.getItem(setKey(e.id,s,"rpe"))||"";
-      const done=localStorage.getItem(checkKey(e.id,s))==="1";
-      rows+=`<div class="setGrid"><div class="muted">S${s}</div>
-      <input inputmode="decimal" value="${esc(kg)}" placeholder="kg" oninput="setVal('${e.id}',${s},'kg',this.value)">
-      <input inputmode="numeric" value="${esc(reps)}" placeholder="rip" oninput="setVal('${e.id}',${s},'reps',this.value)">
-      <input inputmode="decimal" value="${esc(rpe)}" placeholder="RPE" oninput="setVal('${e.id}',${s},'rpe',this.value)">
-      <button class="check ${done?'done':''}" onclick="toggleDone('${e.id}',${s},this)">✓</button></div>`;
-    }
-    root.innerHTML+=`<div class="exercise"><div class="between"><div><h2>${idx+1}. ${esc(e.name)}</h2><div class="details">${esc(e.reps)}</div></div><span class="tag">${esc(e.group)}</span></div>
-    <div class="guide"><div><b>Come farlo:</b> ${esc(e.how)}</div><div><b>Non fare:</b> ${esc(e.dont)}</div><div><b>Dovresti sentire:</b> ${esc(e.feel)}</div></div>${rows}</div>`;
-  });
-  updateStats();
-}
-function esc(s){return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll('"',"&quot;")}
-function setVal(id,s,field,val){localStorage.setItem(setKey(id,s,field),val);updateStats()}
-function toggleDone(id,s,btn){const k=checkKey(id,s);const n=localStorage.getItem(k)==="1"?"0":"1";localStorage.setItem(k,n);btn.classList.toggle("done",n==="1"); if(n==="1") timerStart(90); updateStats()}
-function updateStats(){
-  let tot=0, done=0, vol=0;
-  workout[currentDay].forEach(e=>{for(let s=1;s<=Number(e.sets);s++){tot++; if(localStorage.getItem(checkKey(e.id,s))==="1")done++; const kg=parseFloat((localStorage.getItem(setKey(e.id,s,"kg"))||"").replace(",",".")); const reps=parseFloat((localStorage.getItem(setKey(e.id,s,"reps"))||"").replace(",",".")); if(!isNaN(kg)&&!isNaN(reps)) vol += kg*reps;}});
-  document.getElementById("completePct").textContent=tot?Math.round(done/tot*100)+"%":"0%";
-  document.getElementById("doneSets").textContent=`${done}/${tot}`;
-  document.getElementById("volumeStat").textContent=Math.round(vol).toString();
-}
-function timerStart(sec){clearInterval(timer);timerLeft=sec;paintTimer();timer=setInterval(()=>{timerLeft--;paintTimer(); if(timerLeft<=0){clearInterval(timer);navigator.vibrate&&navigator.vibrate([180,80,180])}},1000)}
-function timerStop(){clearInterval(timer);timerLeft=0;paintTimer()}
-function paintTimer(){const m=String(Math.floor(timerLeft/60)).padStart(2,"0"),s=String(timerLeft%60).padStart(2,"0");document.getElementById("timerText").textContent=`${m}:${s}`}
-function clearCurrentChecks(){if(!confirm("Pulire check della seduta corrente?"))return; workout[currentDay].forEach(e=>{for(let s=1;s<=Number(e.sets);s++)localStorage.removeItem(checkKey(e.id,s))}); renderWorkout()}
-function saveSession(){
-  const sessions=load("sessionsV4",[]);
-  const session={id:Date.now(),date:new Date().toLocaleDateString("it-IT"),iso:new Date().toISOString(),day:currentDay,items:[]};
-  workout[currentDay].forEach(e=>{
-    const sets=[]; for(let s=1;s<=Number(e.sets);s++){sets.push({kg:localStorage.getItem(setKey(e.id,s,"kg"))||"",reps:localStorage.getItem(setKey(e.id,s,"reps"))||"",rpe:localStorage.getItem(setKey(e.id,s,"rpe"))||"",done:localStorage.getItem(checkKey(e.id,s))==="1"});}
-    session.items.push({exerciseId:e.id,name:e.name,sets});
-  });
-  sessions.push(session); localStorage.setItem("sessionsV4",JSON.stringify(sessions)); alert("Seduta salvata"); renderHome();
-}
-function renderEditor(){
-  document.getElementById("editAButton").classList.toggle("active",editDay==="A");document.getElementById("editBButton").classList.toggle("active",editDay==="B");
-  const root=document.getElementById("editorList"); root.innerHTML="";
-  workout[editDay].forEach((e,i)=>{
-    root.innerHTML += `<div class="editorItem"><div class="between"><h2>${i+1}. ${esc(e.name)}</h2><button class="small danger" onclick="deleteExercise(${i})">Elimina</button></div>
-    <div class="grid"><div><label>Nome</label><input id="ed_name_${i}" value="${esc(e.name)}"></div><div><label>Gruppo</label><input id="ed_group_${i}" value="${esc(e.group)}"></div><div><label>Serie</label><input inputmode="numeric" id="ed_sets_${i}" value="${e.sets}"></div><div><label>Ripetizioni</label><input id="ed_reps_${i}" value="${esc(e.reps)}"></div></div>
-    <label>Come farlo</label><textarea id="ed_how_${i}">${esc(e.how)}</textarea>
-    <label>Non fare</label><textarea id="ed_dont_${i}">${esc(e.dont)}</textarea>
-    <label>Dovresti sentire</label><textarea id="ed_feel_${i}">${esc(e.feel)}</textarea>
-    <div class="row"><button class="small" onclick="moveExercise(${i},-1)">↑ Su</button><button class="small" onclick="moveExercise(${i},1)">↓ Giù</button><button class="small" onclick="duplicateExercise(${i})">Duplica</button></div></div>`;
-  });
-}
+function setKey(id,s,f){return`fit_${id}_${s}_${f}`}function doneKey(id,s){return`fit_done_${id}_${s}`}
+function renderWorkout(){const root=document.getElementById("exerciseList");root.innerHTML="";workout[currentDay].forEach((e,idx)=>{let rows=`<div class="setGrid head"><div></div><div>Kg</div><div>Rip.</div><div>RPE</div><div></div></div>`;for(let s=1;s<=Number(e.sets);s++){const kg=localStorage.getItem(setKey(e.id,s,"kg"))||"",reps=localStorage.getItem(setKey(e.id,s,"reps"))||"",rpe=localStorage.getItem(setKey(e.id,s,"rpe"))||"",done=localStorage.getItem(doneKey(e.id,s))==="1";rows+=`<div class="setGrid"><div class="muted">S${s}</div><input inputmode="decimal" value="${esc(kg)}" placeholder="kg" oninput="setVal('${e.id}',${s},'kg',this.value)"><input inputmode="numeric" value="${esc(reps)}" placeholder="rip" oninput="setVal('${e.id}',${s},'reps',this.value)"><input inputmode="decimal" value="${esc(rpe)}" placeholder="RPE" oninput="setVal('${e.id}',${s},'rpe',this.value)"><button class="check ${done?'done':''}" onclick="toggleDone('${e.id}',${s},this)">✓</button></div>`}root.innerHTML+=`<div class="exercise"><div class="between"><div><h2>${idx+1}. ${esc(e.name)}</h2><div class="muted">${esc(e.reps)}</div></div><span class="tag">${esc(e.group)}</span></div><div class="guide"><div><b>Come farlo:</b> ${esc(e.how)}</div><div><b>Non fare:</b> ${esc(e.dont)}</div><div><b>Dovresti sentire:</b> ${esc(e.feel)}</div></div>${rows}</div>`});updateStats()}
+function setVal(id,s,f,v){localStorage.setItem(setKey(id,s,f),v);updateStats()}
+function toggleDone(id,s,btn){const k=doneKey(id,s),n=localStorage.getItem(k)==="1"?"0":"1";localStorage.setItem(k,n);btn.classList.toggle("done",n==="1");if(n==="1")timerStart(90);updateStats()}
+function updateStats(){let tot=0,done=0,vol=0;workout[currentDay].forEach(e=>{for(let s=1;s<=Number(e.sets);s++){tot++;if(localStorage.getItem(doneKey(e.id,s))==="1")done++;const kg=parseFloat((localStorage.getItem(setKey(e.id,s,"kg"))||"").replace(",",".")),reps=parseFloat((localStorage.getItem(setKey(e.id,s,"reps"))||"").replace(",","."));if(!isNaN(kg)&&!isNaN(reps))vol+=kg*reps}});document.getElementById("completePct").textContent=tot?Math.round(done/tot*100)+"%":"0%";document.getElementById("doneSets").textContent=`${done}/${tot}`;document.getElementById("volumeStat").textContent=Math.round(vol)}
+function timerStart(sec){clearInterval(timer);timerLeft=sec;paintTimer();timer=setInterval(()=>{timerLeft--;paintTimer();if(timerLeft<=0){clearInterval(timer);navigator.vibrate&&navigator.vibrate([180,80,180])}},1000)}function timerStop(){clearInterval(timer);timerLeft=0;paintTimer()}function paintTimer(){const m=String(Math.floor(timerLeft/60)).padStart(2,"0"),s=String(timerLeft%60).padStart(2,"0");document.getElementById("timerText").textContent=`${m}:${s}`}
+function clearCurrentChecks(){if(!confirm("Pulire check della seduta corrente?"))return;workout[currentDay].forEach(e=>{for(let s=1;s<=Number(e.sets);s++)localStorage.removeItem(doneKey(e.id,s))});renderWorkout()}
+function saveSession(){const sessions=get("sessionsFitPro",[]);const session={id:Date.now(),date:new Date().toLocaleDateString("it-IT"),iso:new Date().toISOString(),day:currentDay,items:[]};workout[currentDay].forEach(e=>{const sets=[];for(let s=1;s<=Number(e.sets);s++){sets.push({kg:localStorage.getItem(setKey(e.id,s,"kg"))||"",reps:localStorage.getItem(setKey(e.id,s,"reps"))||"",rpe:localStorage.getItem(setKey(e.id,s,"rpe"))||"",done:localStorage.getItem(doneKey(e.id,s))==="1"})}session.items.push({exerciseId:e.id,name:e.name,sets})});sessions.push(session);localStorage.setItem("sessionsFitPro",JSON.stringify(sessions));alert("Seduta salvata");renderHome()}
+function renderEditor(){document.getElementById("editAButton").classList.toggle("active",editDay==="A");document.getElementById("editBButton").classList.toggle("active",editDay==="B");const root=document.getElementById("editorList");root.innerHTML="";workout[editDay].forEach((e,i)=>{root.innerHTML+=`<div class="editorItem"><div class="between"><h2>${i+1}. ${esc(e.name)}</h2><button class="small danger" onclick="deleteExercise(${i})">Elimina</button></div><div class="grid"><div><label>Nome</label><input id="ed_name_${i}" value="${esc(e.name)}"></div><div><label>Gruppo</label><input id="ed_group_${i}" value="${esc(e.group)}"></div><div><label>Serie</label><input inputmode="numeric" id="ed_sets_${i}" value="${e.sets}"></div><div><label>Ripetizioni</label><input id="ed_reps_${i}" value="${esc(e.reps)}"></div></div><label>Come farlo</label><textarea id="ed_how_${i}">${esc(e.how)}</textarea><label>Non fare</label><textarea id="ed_dont_${i}">${esc(e.dont)}</textarea><label>Dovresti sentire</label><textarea id="ed_feel_${i}">${esc(e.feel)}</textarea><div class="row"><button class="small" onclick="moveExercise(${i},-1)">↑ Su</button><button class="small" onclick="moveExercise(${i},1)">↓ Giù</button><button class="small" onclick="duplicateExercise(${i})">Duplica</button></div></div>`})}
 function val(id){return document.getElementById(id).value.trim()}
-function saveWorkoutFromEditor(){
-  workout[editDay]=workout[editDay].map((e,i)=>({...e,name:val(`ed_name_${i}`),group:val(`ed_group_${i}`),sets:Math.max(1,parseInt(val(`ed_sets_${i}`)||"1")),reps:val(`ed_reps_${i}`),how:val(`ed_how_${i}`),dont:val(`ed_dont_${i}`),feel:val(`ed_feel_${i}`)}));
-  saveLocal(); renderEditor(); renderWorkout(); alert("Scheda salvata");
-}
-function addExercise(){workout[editDay].push(ex("Nuovo esercizio","Gruppo","3 x 10",3,"Descrivi esecuzione.","Descrivi errori da evitare.","Descrivi muscoli target."));saveLocal();renderEditor()}
-function deleteExercise(i){if(confirm("Eliminare esercizio?")){workout[editDay].splice(i,1);saveLocal();renderEditor();renderWorkout()}}
-function moveExercise(i,dir){const j=i+dir;if(j<0||j>=workout[editDay].length)return;[workout[editDay][i],workout[editDay][j]]=[workout[editDay][j],workout[editDay][i]];saveLocal();renderEditor()}
-function duplicateExercise(i){const copy={...workout[editDay][i],id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),name:workout[editDay][i].name+" copia"};workout[editDay].splice(i+1,0,copy);saveLocal();renderEditor()}
-function resetWorkout(){if(confirm("Ripristinare la scheda base? Lo storico resta salvato.")){workout=structuredClone(defaultWorkout);saveLocal();renderEditor();renderWorkout()}}
-function renderHome(){
-  const sessions=load("sessionsV4",[]), weights=load("weightsV4",[]);
-  document.getElementById("homeSessions").textContent=sessions.length;
-  document.getElementById("homeLast").textContent=sessions.length?sessions[sessions.length-1].date:"—";
-  document.getElementById("homeWeight").textContent=weights.length?weights[weights.length-1].kg+" kg":"—";
-}
+function saveWorkoutFromEditor(){workout[editDay]=workout[editDay].map((e,i)=>({...e,name:val(`ed_name_${i}`),group:val(`ed_group_${i}`),sets:Math.max(1,parseInt(val(`ed_sets_${i}`)||"1")),reps:val(`ed_reps_${i}`),how:val(`ed_how_${i}`),dont:val(`ed_dont_${i}`),feel:val(`ed_feel_${i}`)}));storeWorkout();renderEditor();renderWorkout();alert("Scheda salvata")}
+function addExercise(){workout[editDay].push(makeEx("Nuovo esercizio","Gruppo","3 x 10",3,"Descrivi esecuzione.","Descrivi errori da evitare.","Descrivi muscoli target."));storeWorkout();renderEditor()}
+function deleteExercise(i){if(confirm("Eliminare esercizio?")){workout[editDay].splice(i,1);storeWorkout();renderEditor();renderWorkout()}}
+function moveExercise(i,dir){const j=i+dir;if(j<0||j>=workout[editDay].length)return;[workout[editDay][i],workout[editDay][j]]=[workout[editDay][j],workout[editDay][i]];storeWorkout();renderEditor()}
+function duplicateExercise(i){const copy={...workout[editDay][i],id:(crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random())),name:workout[editDay][i].name+" copia"};workout[editDay].splice(i+1,0,copy);storeWorkout();renderEditor()}
+function resetWorkout(){if(confirm("Ripristinare la scheda base? Lo storico resta salvato.")){workout=clone(defaultWorkout);storeWorkout();renderEditor();renderWorkout()}}
+function renderHome(){const sessions=get("sessionsFitPro",[]),measures=get("measuresFitPro",[]);document.getElementById("homeSessions").textContent=sessions.length;document.getElementById("homeLast").textContent=sessions.length?sessions[sessions.length-1].date:"—";document.getElementById("homeWeight").textContent=measures.length&&measures[measures.length-1].kg?measures[measures.length-1].kg+" kg":"—";const prs=getPRs();const last=Object.entries(prs).sort((a,b)=>b[1]-a[1])[0];document.getElementById("homeBest").textContent=last?`${last[0]} ${last[1]}kg`:"—";document.getElementById("recentSessions").innerHTML=sessions.slice(-5).reverse().map(s=>`<div class="listItem"><b>${s.date}</b> · Giorno ${s.day}<br><span class="muted">${s.items.length} esercizi salvati</span></div>`).join("")||"Nessuna seduta salvata."}
 function renderProgressSelect(){const sel=document.getElementById("progressSelect");const names=[...new Set([...workout.A,...workout.B].map(e=>e.name))];sel.innerHTML=names.map(n=>`<option>${esc(n)}</option>`).join("")}
-function drawLine(canvasId,points,title){
-  const c=document.getElementById(canvasId),ctx=c.getContext("2d");ctx.clearRect(0,0,c.width,c.height);
-  ctx.fillStyle="#f4f4f5";ctx.font="24px system-ui";ctx.fillText(title,24,36);
-  ctx.strokeStyle="#2d3445";ctx.beginPath();ctx.moveTo(50,360);ctx.lineTo(800,360);ctx.stroke();
-  if(!points.length){ctx.fillStyle="#9ca3af";ctx.font="18px system-ui";ctx.fillText("Nessun dato salvato",24,90);return}
-  const vals=points.map(p=>p.v),min=Math.min(...vals),max=Math.max(...vals),range=Math.max(1,max-min);
-  ctx.strokeStyle="#a78bfa";ctx.lineWidth=4;ctx.beginPath();
-  points.forEach((p,i)=>{const x=65+i*(710/Math.max(1,points.length-1));const y=335-((p.v-min)/range)*245;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();
-  ctx.fillStyle="#c4b5fd";ctx.font="16px system-ui";points.forEach((p,i)=>{const x=65+i*(710/Math.max(1,points.length-1));const y=335-((p.v-min)/range)*245;ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();ctx.fillText(String(p.v),x-12,y-12)});
-}
-function drawProgress(){
-  const name=document.getElementById("progressSelect").value; const sessions=load("sessionsV4",[]);
-  const pts=sessions.map(s=>{const item=s.items.find(x=>x.name===name); if(!item)return null; const vals=item.sets.map(x=>parseFloat(String(x.kg).replace(",","."))).filter(x=>!isNaN(x)); if(!vals.length)return null; return {v:Math.max(...vals)}}).filter(Boolean);
-  drawLine("progressCanvas",pts,name);
-}
-function renderRecords(){
-  const sessions=load("sessionsV4",[]), rec={};
-  sessions.forEach(s=>s.items.forEach(it=>it.sets.forEach(set=>{const kg=parseFloat(String(set.kg).replace(",",".")); if(!isNaN(kg))rec[it.name]=Math.max(rec[it.name]||0,kg)})));
-  document.getElementById("records").innerHTML=Object.keys(rec).length?Object.entries(rec).sort((a,b)=>a[0].localeCompare(b[0])).map(([k,v])=>`<span class="pill">${esc(k)}: <b>${v} kg</b></span>`).join(""):"<p class='muted'>Nessun record salvato.</p>";
-}
-function saveBodyWeight(){const kg=parseFloat((document.getElementById("bodyWeightInput").value||"").replace(",",".")); if(isNaN(kg))return alert("Inserisci un peso valido"); const weights=load("weightsV4",[]); weights.push({date:new Date().toLocaleDateString("it-IT"),iso:new Date().toISOString(),kg,note:document.getElementById("bodyNoteInput").value}); localStorage.setItem("weightsV4",JSON.stringify(weights));document.getElementById("bodyWeightInput").value="";document.getElementById("bodyNoteInput").value="";drawWeight();renderHome()}
-function drawWeight(){const weights=load("weightsV4",[]).map(x=>({v:x.kg})); drawLine("weightCanvas",weights,"Peso corporeo")}
-function exportBackup(){const data={workout,sessions:load("sessionsV4",[]),weights:load("weightsV4",[]),version:"4.0"};downloadJSON(data,"allenamento_backup_v4.json")}
-function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(data.workout){workout=data.workout;saveLocal()}if(data.sessions)localStorage.setItem("sessionsV4",JSON.stringify(data.sessions));if(data.weights)localStorage.setItem("weightsV4",JSON.stringify(data.weights));renderEditor();renderWorkout();renderHome();alert("Backup importato")}catch{alert("File non valido")}};r.readAsText(f)}
+function drawLine(canvasId,points,title){const c=document.getElementById(canvasId),ctx=c.getContext("2d");ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle="#f4f4f5";ctx.font="24px system-ui";ctx.fillText(title,24,36);ctx.strokeStyle="#2d3445";ctx.beginPath();ctx.moveTo(50,360);ctx.lineTo(800,360);ctx.stroke();if(!points.length){ctx.fillStyle="#9ca3af";ctx.font="18px system-ui";ctx.fillText("Nessun dato salvato",24,90);return}const vals=points.map(p=>p.v),min=Math.min(...vals),max=Math.max(...vals),range=Math.max(1,max-min);ctx.strokeStyle="#a78bfa";ctx.lineWidth=4;ctx.beginPath();points.forEach((p,i)=>{const x=65+i*(710/Math.max(1,points.length-1));const y=335-((p.v-min)/range)*245;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();ctx.fillStyle="#c4b5fd";ctx.font="16px system-ui";points.forEach((p,i)=>{const x=65+i*(710/Math.max(1,points.length-1));const y=335-((p.v-min)/range)*245;ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();ctx.fillText(String(p.v),x-12,y-12)})}
+function drawProgress(){const name=document.getElementById("progressSelect").value;const sessions=get("sessionsFitPro",[]);const pts=sessions.map(s=>{const item=s.items.find(x=>x.name===name);if(!item)return null;const vals=item.sets.map(x=>parseFloat(String(x.kg).replace(",","."))).filter(x=>!isNaN(x));return vals.length?{v:Math.max(...vals)}:null}).filter(Boolean);drawLine("progressCanvas",pts,name||"Progressi")}
+function getPRs(){const sessions=get("sessionsFitPro",[]),rec={};sessions.forEach(s=>s.items.forEach(it=>it.sets.forEach(set=>{const kg=parseFloat(String(set.kg).replace(",","."));if(!isNaN(kg))rec[it.name]=Math.max(rec[it.name]||0,kg)})));return rec}
+function renderRecords(){const rec=getPRs();document.getElementById("records").innerHTML=Object.keys(rec).length?Object.entries(rec).sort((a,b)=>a[0].localeCompare(b[0])).map(([k,v])=>`<span class="pill">${esc(k)}: <b>${v} kg</b></span>`).join(""):"<p class='muted'>Nessun record salvato.</p>"}
+function saveBodyStats(){const kg=parseFloat((document.getElementById("bodyWeightInput").value||"").replace(",","."));const waist=parseFloat((document.getElementById("waistInput").value||"").replace(",","."));const hips=parseFloat((document.getElementById("hipsInput").value||"").replace(",","."));const thigh=parseFloat((document.getElementById("thighInput").value||"").replace(",","."));if(isNaN(kg)&&isNaN(waist)&&isNaN(hips)&&isNaN(thigh))return alert("Inserisci almeno un valore.");const arr=get("measuresFitPro",[]);arr.push({date:new Date().toLocaleDateString("it-IT"),iso:new Date().toISOString(),kg:isNaN(kg)?"":kg,waist:isNaN(waist)?"":waist,hips:isNaN(hips)?"":hips,thigh:isNaN(thigh)?"":thigh,note:document.getElementById("bodyNoteInput").value});localStorage.setItem("measuresFitPro",JSON.stringify(arr));["bodyWeightInput","waistInput","hipsInput","thighInput","bodyNoteInput"].forEach(id=>document.getElementById(id).value="");drawWeight();renderMeasures();renderHome()}
+function drawWeight(){const arr=get("measuresFitPro",[]).filter(x=>x.kg!=="").map(x=>({v:x.kg}));drawLine("weightCanvas",arr,"Peso corporeo")}
+function renderMeasures(){const arr=get("measuresFitPro",[]).slice(-8).reverse();document.getElementById("measureList").innerHTML=arr.map(x=>`<div class="listItem"><b>${x.date}</b><br>Peso: ${x.kg||"—"} kg · Vita: ${x.waist||"—"} · Fianchi: ${x.hips||"—"} · Coscia: ${x.thigh||"—"}<br><span class="muted">${esc(x.note||"")}</span></div>`).join("")||"Nessuna misurazione."}
+function exportBackup(){const data={version:"proposta-completa",workout,sessions:get("sessionsFitPro",[]),measures:get("measuresFitPro",[])};downloadJSON(data,"allenamento_backup_completo.json")}
+function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(data.workout){workout=data.workout;storeWorkout()}if(data.sessions)localStorage.setItem("sessionsFitPro",JSON.stringify(data.sessions));if(data.measures)localStorage.setItem("measuresFitPro",JSON.stringify(data.measures));renderHome();renderWorkout();renderEditor();alert("Backup importato")}catch{alert("File non valido")}};r.readAsText(f)}
 function downloadJSON(data,name){const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click()}
-function resetAll(){if(confirm("Cancellare tutto: scheda, sedute, peso e dati?")){localStorage.clear();workout=structuredClone(defaultWorkout);saveLocal();renderHome();renderWorkout();renderEditor();drawWeight()}}
-if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js")}
-saveLocal();renderHome();renderWorkout();renderEditor();paintTimer();
+function resetAll(){if(confirm("Cancellare tutto?")){localStorage.clear();workout=clone(defaultWorkout);storeWorkout();renderHome();renderWorkout();renderEditor();drawWeight();renderMeasures()}}
+storeWorkout();renderHome();renderWorkout();renderEditor();paintTimer();if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js")}
 </script>
 </body>
 </html>
